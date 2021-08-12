@@ -1,0 +1,186 @@
+
+WindowManager:
+    ContainerOne:
+    ContainerTwo:
+    ContainerThree:
+
+
+<ContainerOne>:
+    name: 'one'
+    BoxLayout:
+        padding: 10
+        BoxLayout:
+            canvas:
+                Color:
+                    rgba: (0, 0.5, 1, 1)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            orientation: 'vertical'
+            padding: 10
+            spacing: 15
+
+            Button:
+                id: btn
+                text: 'Расчет остатка'
+                on_press: root.manager.current = 'three'
+
+            Button:
+                id: btn2
+                text: 'Кол-во в роле'
+                on_press: root.manager.current = 'two'
+
+
+<ContainerTwo>:
+    name: 'two'
+
+    text_input_width: ti_width
+    text_input_m2: ti_m2
+    label_result_m2: label_m2
+
+    text_input_pm: ti_pm
+    label_result_pm: label_pm
+
+    GridLayout:
+        rows: 2
+        padding: 15
+        spacing: 10
+        Button:
+            size_hint: 1, 0.1
+            text: '<--Назад'
+            on_press: root.manager.current = 'one'
+
+        GridLayout:
+            spacing: 10
+            rows: 2
+            GridLayout:
+                canvas:
+                    Color:
+                        rgba: (0, 0.5, 1, 1)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                spacing: 10
+                padding: 5
+                rows: 5
+                TextInput:
+                    id: ti_width
+                    multiline: False
+                    readonly: False
+                    halign: 'center'
+                    font_size: 15
+                    write_tab: False
+                    input_filter: 'float'
+                    hint_text: 'Ширина роля'
+                TextInput:
+                    id: ti_m2
+                    multiline: False
+                    readonly: False
+                    halign: 'center'
+                    font_size: 15
+                    write_tab: False
+                    input_filter: 'float'
+                    hint_text: 'м2'
+                Label:
+                    id: label_m2
+                    font_size: 15
+                Button:
+                    text: 'РЕЗУЛЬТАТ'
+                    on_release: root.number_of_sheets_m2()
+                Button:
+                    text: 'ОЧИСТИТЬ ПОЛЯ'
+                    on_release: root.clear1()
+
+            GridLayout:
+                canvas:
+                    Color:
+                        rgba: (0, 0.5, 1, 1)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                spacing: 10
+                padding: 5
+                rows: 4
+                TextInput:
+                    id: ti_pm
+                    multiline: False
+                    readonly: False
+                    halign: 'center'
+                    font_size: 15
+                    write_tab: False
+                    input_filter: 'float'
+                    hint_text: 'п/метры'
+                Label:
+                    id: label_pm
+                    font_size: 15
+                Button:
+                    text: 'РЕЗУЛЬТАТ'
+                    on_release: root.number_of_sheets_pm()
+                Button:
+                    text: 'ОЧИСТИТЬ ПОЛЯ'
+                    on_release: root.clear2()
+
+
+<ContainerThree>:
+    name: 'three'
+
+    solution1: ti1
+    solution2: ti2
+    solution3: ti3
+
+    print_result: label
+
+    BoxLayout:
+        padding: 10
+        GridLayout:
+            rows: 7
+            padding: 10
+            spacing: 10
+            canvas:
+                Color:
+                    rgba: (0, 0.5, 1, 1)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Button:
+                size_hint: 1, 0.7
+                text: '<--Назад'
+                on_press: root.manager.current = 'one'
+            TextInput:
+                id: ti1
+                multiline: False
+                readonly: False
+                halign: 'center'
+                font_size: 15
+                write_tab: False
+                input_filter: 'float'
+                hint_text: 'Начальный диаметр роля (м)'
+            TextInput:
+                id: ti2
+                multiline: False
+                readonly: False
+                halign: 'center'
+                font_size: 15
+                write_tab: False
+                input_filter: 'float'
+                hint_text: 'Масса роля (кг)'
+            TextInput:
+                id: ti3
+                multiline: False
+                readonly: False
+                halign: 'center'
+                font_size: 15
+                write_tab: False
+                input_filter: 'float'
+                hint_text: 'Диаметр остатка (м)'
+            Label:
+                id: label
+                font_size: 15
+            Button:
+                text: 'РЕЗУЛЬТАТ'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                on_release: root.on_solution()
+            Button:
+                text: 'ОЧИСТИТЬ ПОЛЯ'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                on_release: root.on_button_press()
