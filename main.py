@@ -57,7 +57,7 @@ class ContainerThree(Screen):
             except AttributeError:
                 self.print_result.text = 'Ошибка'
         else:
-            self.print_result.text = 'заполните все поля'
+            self.print_result.text = 'Заполните все поля'
 
     def on_button_press(self):
         self.solution1.text, self.solution2.text, self.solution3.text = '', '', ''
@@ -69,7 +69,6 @@ class WindowManager(ScreenManager):
 
 
 class MainApp(App):
-
     def build(self):
         self.title = 'Бумажный калькулятор'
 
