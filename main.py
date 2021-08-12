@@ -1,10 +1,6 @@
 import kivy
 from kivy.app import App
 from kivy.uix.screenmanager import Screen, ScreenManager
-from kivy.core.window import Window
-
-
-Window.size = (300, 600)
 
 
 kivy.require('2.0.0')
