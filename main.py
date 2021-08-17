@@ -71,6 +71,7 @@ class WindowManager(ScreenManager):
 class MainApp(App):
     def build(self):
         self.title = 'Бумажный калькулятор'
+        return WindowManager()
 
 
 if __name__ == '__main__':
